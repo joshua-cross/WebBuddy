@@ -1,6 +1,7 @@
 import React from 'react';
 import VoiceButton from './input/voice/voiceInputButton';
 import VoiceInputButton from './input/voice/voiceInputButton';
+import Navigation from './header/navigation'; 
 
 class App extends React.Component {
     constructor(props) {
@@ -22,7 +23,10 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <VoiceInputButton />
+                <Navigation/>
+                <div className = "main">
+                    <VoiceInputButton />
+                </div>
             </div>
         );
     }
