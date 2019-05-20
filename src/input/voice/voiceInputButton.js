@@ -25,7 +25,7 @@ class VoiceInputButton extends React.Component {
         return (
             <button
                 className = "main-button"
-            ><i className="fas fa-microphone"></i>
+            ><span><i className="fas fa-microphone"></i></span>
             Voice Command</button>
         );
     }

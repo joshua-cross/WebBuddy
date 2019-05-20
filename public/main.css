@@ -9,6 +9,27 @@
   letter-spacing: -0.35px;
   padding: 5px;
   cursor: pointer;
+  -webkit-transition: background-color 0.1s;
+  transition: background-color 0.1s;
+}
+
+.main-button span {
+  margin-right: 5px;
+  height: 100%;
+}
+
+.main-button span i {
+  font-size: 14px;
+}
+
+.main-button:hover {
+  -webkit-box-shadow: 1px 2px 4px #286261;
+          box-shadow: 1px 2px 4px #286261;
+}
+
+.main-button:active {
+  background-color: #286261;
+  border: 1px solid #1e4b4a;
 }
 
 body {

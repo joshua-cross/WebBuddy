@@ -1,5 +1,8 @@
 $buttonPrimary: #337E7D;
 $buttonSecondary: #286261;
+$buttonShadow: #1e4b4a;
+
+$paddingAmount: 5px;
 
 .main-button {
     background-color: $buttonPrimary;
@@ -10,6 +13,25 @@ $buttonSecondary: #286261;
     font-weight: bold;
     font-size: 14px;
     letter-spacing: -0.35px;
-    padding: 5px;
+    padding: $paddingAmount;
     cursor: pointer;
+    transition: background-color 0.1s;
+
+    span {
+        margin-right: 5px;
+        height: 100%;
+        i {
+            font-size: 14px;
+        }
+    }
+
+}
+
+.main-button:hover {
+    box-shadow: 1px 2px 4px $buttonSecondary;
+}
+
+.main-button:active {
+    background-color: $buttonSecondary;
+    border: 1px solid $buttonShadow;
 }
