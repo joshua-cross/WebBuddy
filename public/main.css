@@ -85,6 +85,16 @@
           box-sizing: border-box;
 }
 
+.voice-results {
+  margin-top: 35px;
+  color: white;
+  font-family: 'Montserrat';
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  text-align: center;
+  text-transform: capitalize;
+}
+
 body {
   background-color: #4345B2;
   margin: 0px;
