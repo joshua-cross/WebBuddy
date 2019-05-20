@@ -1,0 +1,31 @@
+@import 'buttons';
+
+body {
+    background-color: #4345B2;
+    margin: 0px;
+    padding: 0px;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url("montserrat/Montserrat-Regular.ttf");
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url("montserrat/Montserrat-Bold.ttf");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url("montserrat/Montserrat-ExtraBold.ttf");
+    font-weight: bolder;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url("montserrat/Montserrat-Black.ttf");
+    font-weight: 900;
+}
+

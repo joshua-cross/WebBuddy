@@ -1,0 +1,15 @@
+$buttonPrimary: #337E7D;
+$buttonSecondary: #286261;
+
+.main-button {
+    background-color: $buttonPrimary;
+    border: 1px solid $buttonSecondary;
+    border-radius: 3px;
+    color: white;
+    font-family: 'Montserrat';
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: -0.35px;
+    padding: 5px;
+    cursor: pointer;
+}

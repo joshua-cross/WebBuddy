@@ -1,0 +1,42 @@
+.main-button {
+  background-color: #337E7D;
+  border: 1px solid #286261;
+  border-radius: 3px;
+  color: white;
+  font-family: 'Montserrat';
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: -0.35px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+body {
+  background-color: #4345B2;
+  margin: 0px;
+  padding: 0px;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url("montserrat/Montserrat-Regular.ttf");
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url("montserrat/Montserrat-Bold.ttf");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url("montserrat/Montserrat-ExtraBold.ttf");
+  font-weight: bolder;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url("montserrat/Montserrat-Black.ttf");
+  font-weight: 900;
+}
+/*# sourceMappingURL=main.css.map */
