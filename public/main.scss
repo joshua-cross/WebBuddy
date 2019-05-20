@@ -1,5 +1,6 @@
 @import 'buttons';
 @import 'header';
+@import 'input';
 
 body {
     background-color: #4345B2;
@@ -7,10 +8,6 @@ body {
     padding: 0px;
 }
 
-@font-face {
-    font-family: 'Montserrat';
-    src: url("montserrat/Montserrat-Regular.ttf");
-}
 
 @font-face {
     font-family: 'Montserrat';
@@ -30,8 +27,15 @@ body {
     font-weight: 900;
 }
 
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url("montserrat/Montserrat-Regular.ttf");
+}
+
 .main {
-  margin: auto;  
+  margin: auto;
+  box-sizing: border-box;
 
   /* SMARTPHONES PORTRAIT */
   @media only screen and (min-width: 288px) {
@@ -48,4 +52,9 @@ body {
   @media only screen and (min-width: 1200px) {
       width: 1200px;
   } 
+}
+
+.content {
+    //background-color: orange;
+    padding-top: 100px; 
 }

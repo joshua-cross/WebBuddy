@@ -4,6 +4,10 @@ $buttonShadow: #1e4b4a;
 
 $paddingAmount: 5px;
 
+.voice-input {
+    margin-top: 10px;
+}
+
 .main-button {
     background-color: $buttonPrimary;
     border: 1px solid $buttonSecondary;
