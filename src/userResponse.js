@@ -12,15 +12,19 @@ export default class UserResponse {
     containsKeyWords = () => {
         if(this.containsGreeting(mMessage) !== null) {
             return this.containsGreeting(mMessage);
+        } else {
+            return "Sorry, we could not understand you 😞";
         }
     }
 
     //whether the message contains a given phrase.
     containsPhrase = (phrase, message) => {
-        if (message.includes(phrase))
-            return true;
-        else
-            return false;
+        if (message != "" && message != null) {
+            if (message.includes(phrase))
+                return true;
+            else
+                return false;
+        }
     }
 
     //checking if the message contains a greeting.
@@ -33,8 +37,8 @@ export default class UserResponse {
         //if the user has asked how WebBudi is.
         else if(this.containsPhrase("How are you", message) ||
            this.containsPhrase("You alright", message) || 
-           this.contains("okay", message) ||
-           this.contains("ok", message)) {
+           this.containsPhrase("okay", message) ||
+           this.containsPhrase("ok", message)) {
                return "Yes, I am very good thank you.";
         }
         //else this is not a greeting so return false and check the next criteria
