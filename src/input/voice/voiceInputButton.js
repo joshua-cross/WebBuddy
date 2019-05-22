@@ -79,7 +79,8 @@ class VoiceInputButton extends React.Component {
 
         this.recognition.onspeechend = () => {
             this.recognition.stop();
-            alert("Stopped Listening");
+            //return what the user has typed to the application.
+            this.props.userInputed(this.state.result);
         }
     }
 

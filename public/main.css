@@ -49,6 +49,7 @@
   font-weight: 900;
   letter-spacing: -1.6px;
   font-size: 24px;
+  z-index: 100;
 }
 
 .header .header-holder {
@@ -93,6 +94,74 @@
   letter-spacing: 1.5px;
   text-align: center;
   text-transform: capitalize;
+}
+
+.speech-bubble {
+  background-color: white;
+  border-radius: 3px;
+  display: inline-block;
+  padding: 3px 5px;
+  font-family: 'Montserrat';
+  font-size: 14px;
+  color: #313131;
+  position: relative;
+  text-align: right;
+}
+
+.bubble-holder, .arrow-holder {
+  width: 100%;
+}
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  display: inline-block;
+  top: -4px;
+  border-top: 10px solid white;
+  position: relative;
+}
+
+.right-bubble {
+  right: 0px;
+}
+
+.left-bubble {
+  left: 0px;
+}
+
+.left-arrow {
+  left: 5px;
+}
+
+.right-arrow {
+  left: -7px;
+}
+
+.response-holder p {
+  margin: 0px;
+  padding: 0px;
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.message {
+  font-family: 'Montserrat';
+  letter-spacing: 1.5px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.response {
+  width: 90%;
+  margin: auto;
 }
 
 body {
