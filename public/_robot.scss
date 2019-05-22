@@ -1,4 +1,10 @@
 $border: rgb(33, 34, 92);
+$background: rgb(82, 84, 212);
+
+.robot-holder {
+    margin-bottom: 20px;
+    position: relative;
+}
 
 .head {
     border: 2px solid $border;
@@ -8,7 +14,64 @@ $border: rgb(33, 34, 92);
     height: 125px;
     margin: auto;
     position: relative;
-    margin-bottom: 20px;
+    background-color: $background;
+}
+
+.ear {
+    width: 10px;
+    height: 20px;
+    border-top: 2px solid $border;
+    border-bottom: 2px solid $border;
+    position: absolute;
+    top: 50px;
+    background-color: $background;
+}
+
+.ear-antenna {
+    height: 5px;
+    width: 15px;
+    position: absolute;
+    top: 5px;
+    border-top: 2px solid $border;
+    border-bottom: 2px solid $border;
+    background-color: $background;
+}
+
+.ear-ball {
+    border-radius: 50%;
+    height: 15px;
+    width: 15px;
+    position: absolute;
+    border: 2px solid $border;
+    top: 0px;
+    background-color: $background;
+}
+
+.ear-ball-right {
+    right: -33px;
+}
+
+.ear-ball-left {
+    left: -33px;
+}
+
+.ear-antenna-left {
+    left: -17px;
+}
+
+.ear-antenna-right {
+    right: -17px;
+}
+
+.ear-left {
+    left: -14px;
+    border-left: 2px solid $border;
+}
+
+.ear-right {
+    right: -14px;
+    border-right: 2px solid $border;
+
 }
 
 .eye {
