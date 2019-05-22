@@ -5,12 +5,26 @@ class Robot extends React.Component {
         super(props);
 
         this.state = {
-            
+            mouthOpen: false,
+            class: "mouth"
         }
     }
 
     componentDidMount() {
+        var that = this;
 
+        setInterval(() => {
+            var mClass;
+            if(!that.state.mouthOpen === true) {
+                mClass = "mouth-open";
+            } else {
+                mClass = "mouth";
+            }
+            that.setState({
+                mouthOpen: !that.state.mouthOpen,
+                class: mClass
+            });
+        }, 300);
     }
 
     componentDidUpdate() {
@@ -32,7 +46,7 @@ class Robot extends React.Component {
                 <div className = "nose">
                 </div>
 
-                <div className = "mouth-open">
+                <div className = {`${this.state.class}`}>
                 </div>
             </div>
         );
