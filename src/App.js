@@ -5,6 +5,7 @@ import Navigation from './header/navigation';
 import TextInput from './input/text/textInput'
 import Response from './chat/response';
 import UserResponse from './userResponse';
+import Robot from './robot/robot';
 
 class App extends React.Component {
     constructor(props) {
@@ -82,6 +83,7 @@ class App extends React.Component {
             <div>
                 <Navigation/>
                 <div className = "main content">
+                    <Robot></Robot>
                     <TextInput />
                     <VoiceInputButton
                         userInputed = {this.userInputed}
