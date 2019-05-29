@@ -73,20 +73,38 @@ class App extends React.Component {
         var aiResponse = userResponse.containsKeyWords();
         currentAIResponses.push(aiResponse);
 
-        var that = this;
-
         this.setState({
             responses: currResponses,
             ai: currentAIResponses,
             responding: true
         });
 
-        //after 3 seconds disable the robots talking animation.
-        setTimeout(() => {
+        //having the application speak the AI response.
+        this.textToSpeech(aiResponse);
+    }
+
+    //function that performs text to speech on a given string.
+    textToSpeech = (toSpeak) => {
+        var msg = new SpeechSynthesisUtterance();
+        var voices = window.speechSynthesis.getVoices();
+        msg.voice = voices[10]; // Note: some voices don't support altering params
+        msg.voiceURI = 'native';
+        msg.volume = 1; // 0 to 1
+        msg.rate = 1; // 0.1 to 10
+        msg.pitch = 1; //0 to 2
+        msg.text = toSpeak;
+        msg.lang = 'en-US';
+
+        var that = this;
+
+        msg.onend = function(e) {
+            console.log('Finished in ' + e.elapsedTime + ' seconds.');
             that.setState({
                 responding: false
             })
-        }, 3000);
+        };
+
+        speechSynthesis.speak(msg);
     }
 
     render() {
