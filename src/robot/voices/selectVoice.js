@@ -5,12 +5,27 @@ class SelectVoice extends React.Component {
         super(props);
 
         this.state = {
-            voice: 10
+            voice: 10,
+            names: []
         };
     }
 
     componentDidMount() {
+        var voices = window.speechSynthesis.getVoices();
+        console.log(voices);
+        setTimeout(() => {
+            var voices = speechSynthesis.getVoices();
+            console.log(voices);
 
+            var names = [];
+            for(let i = 0; i < voices.length; i++) {
+                names.push(voices[i].name);
+            }
+
+            this.setState({
+                names: names
+            })
+        }, 200);
     }
 
     componentDidUpdate() {
@@ -27,21 +42,22 @@ class SelectVoice extends React.Component {
         //this.props.speak("Testing");
     }
 
+    //getting the list of names from the speech API. 
+    getNames = () => {
+        var toDisplay = [];
+
+        for(let i = 0; i < this.state.names.length; i++) {
+            toDisplay.push(<option value = {i}>{this.state.names[i]}</option>);
+        }
+
+        return <select onChange = {this.voiceChanged}>{toDisplay}</select>;
+    }
+
     render() {
         return (
-        <select onChange = {this.voiceChanged}> 
-            <option value = "0"/>
-            <option value = "1">James</option>
-            <option value = "2">James</option>
-            <option value = "3">James</option>
-            <option value = "4">James</option>
-            <option value = "5">James</option>
-            <option value = "6">James</option>
-            <option value = "7">James</option>
-            <option value = "8">James</option>
-            <option value = "9">James</option>
-            <option value = "10">James</option>
-        </select>
+            <div>
+                {this.getNames()}
+            </div>
         );
     }
 }
