@@ -5,9 +5,16 @@ class Robot extends React.Component {
         super(props);
 
         this.state = {
+            responding: this.props.responding,
             mouthOpen: false,
             class: "mouth"
         }
+    }
+
+    componentWillReceiveProps(nextProp) {
+        this.setState({
+            responding: nextProp.responding
+        });
     }
 
     componentDidMount() {
@@ -15,7 +22,7 @@ class Robot extends React.Component {
 
         setInterval(() => {
             var mClass;
-            if(!that.state.mouthOpen === true) {
+            if(!that.state.mouthOpen === true && this.state.responding === true) {
                 mClass = "mouth-open";
             } else {
                 mClass = "mouth";

@@ -14,7 +14,8 @@ class App extends React.Component {
         this.state = {
             inputs: [],
             responses: [],
-            ai: []
+            ai: [],
+            responding: false
         };
     }
 
@@ -72,10 +73,20 @@ class App extends React.Component {
         var aiResponse = userResponse.containsKeyWords();
         currentAIResponses.push(aiResponse);
 
+        var that = this;
+
         this.setState({
             responses: currResponses,
-            ai: currentAIResponses
+            ai: currentAIResponses,
+            responding: true
         });
+
+        //after 3 seconds disable the robots talking animation.
+        setTimeout(() => {
+            that.setState({
+                responding: false
+            })
+        }, 3000);
     }
 
     render() {
@@ -83,7 +94,10 @@ class App extends React.Component {
             <div>
                 <Navigation/>
                 <div className = "main content">
-                    <Robot></Robot>
+                    <Robot
+                        responding = {this.state.responding}
+                    />
+                    <p>{this.state.responding.toString()}</p>
                     <TextInput />
                     <VoiceInputButton
                         userInputed = {this.userInputed}
