@@ -6,6 +6,7 @@ import TextInput from './input/text/textInput'
 import Response from './chat/response';
 import UserResponse from './userResponse';
 import Robot from './robot/robot';
+import SelectVoice from './robot/voices/selectVoice';
 
 class App extends React.Component {
     constructor(props) {
@@ -15,12 +16,14 @@ class App extends React.Component {
             inputs: [],
             responses: [],
             ai: [],
-            responding: false
+            responding: false,
+            voice: 3,
+            voices: []
         };
     }
 
     componentDidMount() {
-
+        this.hasDeclinedMic();
     }
 
     componentDidUpdate() {
@@ -76,7 +79,7 @@ class App extends React.Component {
         this.setState({
             responses: currResponses,
             ai: currentAIResponses,
-            responding: true
+            responding: true,
         });
 
         //having the application speak the AI response.
@@ -84,19 +87,23 @@ class App extends React.Component {
     }
 
     //function that performs text to speech on a given string.
-    textToSpeech = (toSpeak) => {
+    textToSpeech = (toSpeak, voice = this.state.voice) => {
         var msg = new SpeechSynthesisUtterance();
         var voices = window.speechSynthesis.getVoices();
-        msg.voice = voices[10]; // Note: some voices don't support altering params
+        msg.voice = voices[voice]; // Note: some voices don't support altering params
+        console.log("The voice is " + voice + " for some fucking reason");
         msg.voiceURI = 'native';
         msg.volume = 1; // 0 to 1
         msg.rate = 1; // 0.1 to 10
         msg.pitch = 1; //0 to 2
         msg.text = toSpeak;
         msg.lang = 'en-US';
+        
+        console.log(voices);
 
         var that = this;
 
+        //when the AI stops speaking, have the robot stop animating.
         msg.onend = function(e) {
             console.log('Finished in ' + e.elapsedTime + ' seconds.');
             that.setState({
@@ -107,6 +114,36 @@ class App extends React.Component {
         speechSynthesis.speak(msg);
     }
 
+
+    //checking if the user has declined microphone usage.
+    hasDeclinedMic = () => {
+        if (!navigator.getUserMedia)
+            navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
+                          navigator.mozGetUserMedia || navigator.msGetUserMedia;
+
+        if (navigator.getUserMedia){
+
+            navigator.getUserMedia({audio:true}, 
+                function(stream) {
+                    console.log("Apparently, is's been accepted");
+                },
+                function(e) {
+                    console.log('Error capturing audio.');
+                }
+            );
+        } else { console.log("Not accepted in browser"); }
+    }
+
+    changeVoice = (voice) => {
+        console.log("We are changing the voice to " + voice);
+        this.setState({
+            voice: voice
+        });
+
+        //allowing the user to here the list of voices they have selected.
+        this.textToSpeech("Testing", voice);
+    }
+
     render() {
         return (
             <div>
@@ -115,7 +152,11 @@ class App extends React.Component {
                     <Robot
                         responding = {this.state.responding}
                     />
-                    <p>{this.state.responding.toString()}</p>
+                    <SelectVoice
+                        changeVoice = {this.changeVoice}
+                        speak = {this.textToSpeech}
+                    />
+                    <p>The voice is {this.state.voice.toString()}</p>
                     <TextInput />
                     <VoiceInputButton
                         userInputed = {this.userInputed}
