@@ -7,6 +7,7 @@ import Response from './chat/response';
 import UserResponse from './userResponse';
 import Robot from './robot/robot';
 import SelectVoice from './robot/voices/selectVoice';
+import Pitch from './robot/voices/pitch';
 
 class App extends React.Component {
     constructor(props) {
@@ -17,7 +18,10 @@ class App extends React.Component {
             responses: [],
             ai: [],
             responding: false,
-            voice: 3,
+            voice: {
+                person: 0,
+                pitch: 1
+            },
             voices: []
         };
     }
@@ -87,7 +91,7 @@ class App extends React.Component {
     }
 
     //function that performs text to speech on a given string.
-    textToSpeech = (toSpeak, voice = this.state.voice) => {
+    textToSpeech = (toSpeak, voice = this.state.voice.person, pitch = this.state.voice.pitch) => {
         var msg = new SpeechSynthesisUtterance();
         var voices = window.speechSynthesis.getVoices();
         msg.voice = voices[voice]; // Note: some voices don't support altering params
@@ -95,7 +99,7 @@ class App extends React.Component {
         msg.voiceURI = 'native';
         msg.volume = 1; // 0 to 1
         msg.rate = 1; // 0.1 to 10
-        msg.pitch = 1; //0 to 2
+        msg.pitch = pitch; //0 to 2
         msg.text = toSpeak;
         msg.lang = 'en-US';
         
@@ -136,12 +140,33 @@ class App extends React.Component {
 
     changeVoice = (voice) => {
         console.log("We are changing the voice to " + voice);
+        //temporary object for the voice as it's about to change.
+        var theVoice = {
+            person: voice,
+            pitch: this.state.voice.pitch
+        };
+
         this.setState({
-            voice: voice
+            voice: theVoice
         });
 
         //allowing the user to here the list of voices they have selected.
         this.textToSpeech("Testing", voice);
+    }
+
+    changePitch = (pitch) => {
+        //temporary object for the voice as it's about to change.
+        var voice = {
+            person: this.state.voice.person,
+            pitch: pitch
+        };
+
+        this.setState({
+            voice: voice
+        });
+
+        //allowing the user to here the voice.
+        this.textToSpeech("Testing", this.state.voice.person, pitch);
     }
 
     render() {
@@ -155,6 +180,9 @@ class App extends React.Component {
                     <SelectVoice
                         changeVoice = {this.changeVoice}
                         speak = {this.textToSpeech}
+                    />
+                    <Pitch
+                        changePitch = {this.changePitch}
                     />
                     <p>The voice is {this.state.voice.toString()}</p>
                     <TextInput />
