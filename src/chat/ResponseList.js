@@ -15,8 +15,8 @@ class ResponseList extends React.Component {
     }
 
     //display Responses.
-    renderItems = () => {
-        return this.props.messages.map((response) => {
+    renderUserMessages = () => {
+        return this.props.userMessages.map((response) => {
             return (<p>{response}</p>);
         });
     }
@@ -29,11 +29,18 @@ class ResponseList extends React.Component {
         });
     }
 
+    renderMessages = () => {
+        return this.props.messages.map((message) => {
+            return (
+                <p>{message.message}, {message.userType}</p>
+            );
+        })
+    }
+
     render() {
         return (
             <div>
-                {this.renderItems()}
-                {this.renderAiMessages()}
+                {this.renderMessages()}
             </div>
         )
     }
@@ -41,7 +48,11 @@ class ResponseList extends React.Component {
 
 const mapStateToProps = (state, currentProps) => {
     console.log(state);
-    return { messages: state.userMessages, aiMessages: state.aiMessages}
+    return { 
+        userMessages: state.userMessages,
+        aiMessages: state.aiMessages,
+        messages: state.messages
+    }
 }
 
 export default connect(mapStateToProps)(ResponseList);

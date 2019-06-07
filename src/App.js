@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { addAiMessage } from './actions';
+import { addMessage } from './actions';
 
 import VoiceButton from './input/voice/voiceInputButton';
 import VoiceInputButton from './input/voice/voiceInputButton';
@@ -87,6 +88,7 @@ class App extends React.Component {
 
         //adding an ai message action to the reducer.
         this.props.addAiMessage(currentAIResponses);
+        this.props.addMessage(currentAIResponses, 'ai');
 
         this.setState({
             responses: currResponses,
@@ -204,5 +206,5 @@ class App extends React.Component {
     }
 }
 
-export default connect(null, {addAiMessage: addAiMessage})(App);
+export default connect(null, {addAiMessage: addAiMessage, addMessage: addMessage})(App);
 

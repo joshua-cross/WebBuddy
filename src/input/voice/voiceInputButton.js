@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import SpeechRecognition from 'react-speech-recognition';
 import { PassThrough } from 'stream';
+import { addUserMessage } from '../../actions';
 import { addMessage } from '../../actions';
 
 const propTypes = {
@@ -82,11 +83,11 @@ class VoiceInputButton extends React.Component {
 
         this.recognition.onspeechend = () => {
             this.recognition.stop();
+            //adding a new action for the reducer with the value of whatever the user said.
+            this.props.addUserMessage(this.state.result);
+            this.props.addMessage(this.state.result, 'user');
             //return what the user has typed to the application.
             this.props.userInputed(this.state.result);
-
-            //adding a new action for the reducer with the value of whatever the user said.
-            this.props.addMessage(this.state.result);
         }
     }
 
@@ -131,4 +132,4 @@ class VoiceInputButton extends React.Component {
     }
 }
 
-export default connect(null, { addMessage: addMessage })(VoiceInputButton);
+export default connect(null, { addUserMessage: addUserMessage, addMessage: addMessage })(VoiceInputButton);
