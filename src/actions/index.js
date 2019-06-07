@@ -5,3 +5,10 @@ export const addMessage = (messageContent) => {
         payload: messageContent
     }
 }
+
+export const addAiMessage = (messageContent => {
+    return {
+        type: 'POST_AI_MESSAGE',
+        payload: messageContent
+    }
+})

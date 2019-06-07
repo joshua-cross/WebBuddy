@@ -1,4 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { addAiMessage } from './actions';
+
 import VoiceButton from './input/voice/voiceInputButton';
 import VoiceInputButton from './input/voice/voiceInputButton';
 import Navigation from './header/navigation'; 
@@ -80,6 +84,9 @@ class App extends React.Component {
         var userResponse = new UserResponse(userInput);
         var aiResponse = userResponse.containsKeyWords();
         currentAIResponses.push(aiResponse);
+
+        //adding an ai message action to the reducer.
+        this.props.addAiMessage(currentAIResponses);
 
         this.setState({
             responses: currResponses,
@@ -197,5 +204,5 @@ class App extends React.Component {
     }
 }
 
-export default App;
+export default connect(null, {addAiMessage: addAiMessage})(App);
 

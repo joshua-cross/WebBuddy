@@ -21,16 +21,27 @@ class ResponseList extends React.Component {
         });
     }
 
+    renderAiMessages = () => {
+        return this.props.aiMessages.map((response) => {
+            return (
+                <p>{response}</p>
+            );
+        });
+    }
+
     render() {
         return (
-            <div>{this.renderItems()}</div>
+            <div>
+                {this.renderItems()}
+                {this.renderAiMessages()}
+            </div>
         )
     }
 }
 
 const mapStateToProps = (state, currentProps) => {
     console.log(state);
-    return { messages: state.userMessages }
+    return { messages: state.userMessages, aiMessages: state.aiMessages}
 }
 
 export default connect(mapStateToProps)(ResponseList);
