@@ -8,6 +8,7 @@ import UserResponse from './userResponse';
 import Robot from './robot/robot';
 import SelectVoice from './robot/voices/selectVoice';
 import Pitch from './robot/voices/pitch';
+import ResponseList from './chat/ResponseList';
 
 class App extends React.Component {
     constructor(props) {
@@ -47,7 +48,7 @@ class App extends React.Component {
                     <Response 
                     right = {false}
                     user = "You"
-                    message = {this.state.responses[i]}
+                    //message = {this.state.responses[i]}
                     />
                 );
 
@@ -56,7 +57,7 @@ class App extends React.Component {
                     <Response
                     right = {true}
                     user = "WebBuddy"
-                    message = {this.state.ai[i]}
+                    //message = {this.state.ai[i]}
                     />
                 );
             }
@@ -189,7 +190,7 @@ class App extends React.Component {
                     <VoiceInputButton
                         userInputed = {this.userInputed}
                     />
-                    {this.drawChat()}
+                    <ResponseList />
                 </div>
             </div>
         );

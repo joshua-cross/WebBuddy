@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 class Response extends React.Component {
     constructor(props) {
@@ -16,6 +17,10 @@ class Response extends React.Component {
 
     componentDidMount() {
         this.determineClass();
+    }
+
+    componentDidUpdate() {
+        console.log(this.props.messages);
     }
     
     //changing the bubble and arrows class depending on what the applications decides.
@@ -61,4 +66,9 @@ Response.defaultProps = {
     right: false
 }
 
-export default Response;
+const mapStateToProps = (state) => {
+    console.log(state);
+    return { messages: state.userMessages }
+}
+
+export default connect(mapStateToProps)(Response);
