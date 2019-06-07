@@ -5,7 +5,7 @@ var mResponse;
 
 export default class UserResponse {
     constructor(message) {
-        mMessage = message;
+        mMessage = message.toLowerCase();
     }
     
     //checking to see if the message contains certain key words.
@@ -35,8 +35,8 @@ export default class UserResponse {
             return "Hello there, I'm WebBuddy";
         }
         //if the user has asked how WebBudi is.
-        else if(this.containsPhrase("How are you", message) ||
-           this.containsPhrase("You alright", message) || 
+        else if(this.containsPhrase("how are you", message) ||
+           this.containsPhrase("you alright", message) || 
            this.containsPhrase("okay", message) ||
            this.containsPhrase("ok", message)) {
                return "Yes, I am very good thank you.";

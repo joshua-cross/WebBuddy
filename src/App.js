@@ -195,7 +195,9 @@ class App extends React.Component {
                         changePitch = {this.changePitch}
                     />
                     <p>The voice is {this.state.voice.toString()}</p>
-                    <TextInput />
+                    <TextInput 
+                        userInputed = {this.userInputed}
+                    />
                     <VoiceInputButton
                         userInputed = {this.userInputed}
                     />
