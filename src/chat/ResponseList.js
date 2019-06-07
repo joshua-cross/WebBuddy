@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Response from './response';
 
 class ResponseList extends React.Component {
     constructor(props) {
@@ -31,9 +32,23 @@ class ResponseList extends React.Component {
 
     renderMessages = () => {
         return this.props.messages.map((message) => {
-            return (
-                <p>{message.message}, {message.userType}</p>
-            );
+            if(message.userType == 'user') {
+                return (
+                    <Response 
+                        right = {false}
+                        user = "You"
+                        message = {message.message}
+                    />
+                );
+            } else {
+                return (
+                    <Response
+                        right = {true}
+                        user = "WebBuddy"
+                        message = {message.message}
+                    />
+                )
+            }
         })
     }
 
@@ -48,6 +63,7 @@ class ResponseList extends React.Component {
 
 const mapStateToProps = (state, currentProps) => {
     console.log(state);
+    //getting all the text from the store.
     return { 
         userMessages: state.userMessages,
         aiMessages: state.aiMessages,
